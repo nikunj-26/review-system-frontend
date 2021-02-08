@@ -1,8 +1,7 @@
 import React from "react";
+import NavigationBar from "./NavigationBar";
 import { useFormik } from "formik";
 import * as Yup from "yup";
-// import FormikControl from "./FormikControl";
-// import { Link } from "react-router-dom";
 import axios from "axios";
 import { Button, TextField } from "@material-ui/core";
 import "./login.css";
@@ -89,78 +88,81 @@ export default function RegistrationForm() {
   });
 
   return (
-    <div className="root">
-      <form onSubmit={formik.handleSubmit} className="form">
-        <h1 style={{ textAlign: "center" }}>Register</h1>
-        <TextField
-          fullWidth
-          margin="normal"
-          id="username"
-          name="username"
-          label="Username"
-          variant="outlined"
-          value={formik.values.username}
-          onChange={formik.handleChange}
-          error={formik.touched.username && Boolean(formik.errors.username)}
-          helperText={formik.touched.username && formik.errors.username}
-        />
-        <TextField
-          fullWidth
-          margin="normal"
-          id="email"
-          name="email"
-          label="Email"
-          variant="outlined"
-          value={formik.values.email}
-          onChange={formik.handleChange}
-          error={formik.touched.email && Boolean(formik.errors.email)}
-          helperText={formik.touched.email && formik.errors.email}
-        />
-        <TextField
-          fullWidth
-          margin="normal"
-          id="password"
-          name="password"
-          label="Password"
-          type="password"
-          variant="outlined"
-          autoComplete="on"
-          value={formik.values.password}
-          onChange={formik.handleChange}
-          error={formik.touched.password && Boolean(formik.errors.password)}
-          helperText={formik.touched.password && formik.errors.password}
-        />
-        <TextField
-          fullWidth
-          margin="normal"
-          id="confirmPassword"
-          name="confirmPassword"
-          label="Confirm Password"
-          type="password"
-          variant="outlined"
-          autoComplete="on"
-          value={formik.values.confirmPassword}
-          onChange={formik.handleChange}
-          error={
-            formik.touched.confirmPassword &&
-            Boolean(formik.errors.confirmPassword)
-          }
-          helperText={
-            formik.touched.confirmPassword && formik.errors.confirmPassword
-          }
-        />
-        <br />
-        <center>
-          <Button
-            color="primary"
-            variant="contained"
-            type="submit"
-            className="button"
-          >
-            Register
-          </Button>
-        </center>
-      </form>
+    <div>
+      <NavigationBar />
+      <div className="root">
+        <form onSubmit={formik.handleSubmit} className="form">
+          <h1 style={{ textAlign: "center" }}>Register</h1>
+          <TextField
+            fullWidth
+            margin="normal"
+            id="username"
+            name="username"
+            label="Username"
+            variant="outlined"
+            value={formik.values.username}
+            onChange={formik.handleChange}
+            error={formik.touched.username && Boolean(formik.errors.username)}
+            helperText={formik.touched.username && formik.errors.username}
+          />
+          <TextField
+            fullWidth
+            margin="normal"
+            id="email"
+            name="email"
+            label="Email"
+            variant="outlined"
+            value={formik.values.email}
+            onChange={formik.handleChange}
+            error={formik.touched.email && Boolean(formik.errors.email)}
+            helperText={formik.touched.email && formik.errors.email}
+          />
+          <TextField
+            fullWidth
+            margin="normal"
+            id="password"
+            name="password"
+            label="Password"
+            type="password"
+            variant="outlined"
+            autoComplete="on"
+            value={formik.values.password}
+            onChange={formik.handleChange}
+            error={formik.touched.password && Boolean(formik.errors.password)}
+            helperText={formik.touched.password && formik.errors.password}
+          />
+          <TextField
+            fullWidth
+            margin="normal"
+            id="confirmPassword"
+            name="confirmPassword"
+            label="Confirm Password"
+            type="password"
+            variant="outlined"
+            autoComplete="on"
+            value={formik.values.confirmPassword}
+            onChange={formik.handleChange}
+            error={
+              formik.touched.confirmPassword &&
+              Boolean(formik.errors.confirmPassword)
+            }
+            helperText={
+              formik.touched.confirmPassword && formik.errors.confirmPassword
+            }
+          />
+          <br />
+          <center>
+            <Button
+              color="primary"
+              variant="contained"
+              type="submit"
+              className="button"
+            >
+              Register
+            </Button>
+          </center>
+        </form>
+      </div>
     </div>
   );
 }

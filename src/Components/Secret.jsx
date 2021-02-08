@@ -10,9 +10,8 @@ function Secret(props) {
       <div style={{ textAlign: "center" }}>
         <h1>Successfully Logged In</h1>
         <p></p>
-        <p>Full Name: {props.fullName}</p>
+        <p>Full Name: {props.username}</p>
         <p>Email ID: {props.email}</p>
-        <p>Phone Number: {props.phone}</p>
         <button
           onClick={() => {
             dispatch(logoutUser());
@@ -26,9 +25,8 @@ function Secret(props) {
 }
 
 const mapStatetoProps = (state) => ({
-  fullName: state.user.fullName,
+  username: state.user.username,
   email: state.user.email,
-  phone: state.user.phone,
 });
 
 export default connect(mapStatetoProps)(Secret);

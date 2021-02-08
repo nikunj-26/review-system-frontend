@@ -2,10 +2,15 @@ import React from "react";
 import LoginForm from "./Components/LoginForm";
 import RegistrationForm from "./Components/RegistrationForm";
 import Secret from "./Components/Secret";
+import Home from "./Components/Home/Home";
+import AddReview from "./Components/AddReview";
 import PrivateRoute from "./Components/PrivateRoute";
+import PublicRoute from "./Components/PublicRoute";
 import { Router, Switch, Route } from "react-router-dom";
 import { Provider } from "react-redux";
 import store from "./redux/store";
+
+import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 
 import { createBrowserHistory } from "history";
 
@@ -16,10 +21,12 @@ function App() {
       <Router history={history}>
         <div className="App">
           <Switch>
-            <Route path="/register" component={RegistrationForm} />
-            <Route path="/login" component={LoginForm} />
+            <Route path="/home" component={Home} />
+            <PublicRoute path="/register" component={RegistrationForm} />
+            <PublicRoute path="/login" component={LoginForm} />
             <PrivateRoute path="/secret" component={Secret} />
-            <Route path="/" exact component={LoginForm} />
+            <PrivateRoute path="/addreview" component={AddReview} />
+            <Route path="/" exact component={Home} />
           </Switch>
         </div>
       </Router>

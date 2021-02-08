@@ -1,4 +1,5 @@
 import React from "react";
+import NavigationBar from "./NavigationBar";
 import { useFormik } from "formik";
 import * as yup from "yup";
 import Button from "@material-ui/core/Button";
@@ -46,7 +47,7 @@ function LoginForm() {
             const user = res.data;
             dispatch(fetchUserSuccess(user));
             localStorage.setItem("user", JSON.stringify(res.data));
-            history.push("/secret");
+            history.push("/");
           } else {
             alert("Invalid email-id or password");
             history.push("/login");
@@ -60,46 +61,50 @@ function LoginForm() {
   });
 
   return (
-    <div className="root">
-      <form onSubmit={formik.handleSubmit} className="form">
-        <h1 style={{ textAlign: "center" }}>Login</h1>
-        <TextField
-          fullWidth
-          margin="normal"
-          id="email"
-          name="email"
-          label="Email"
-          variant="outlined"
-          value={formik.values.email}
-          onChange={formik.handleChange}
-          error={formik.touched.email && Boolean(formik.errors.email)}
-          helperText={formik.touched.email && formik.errors.email}
-        />
-        <TextField
-          fullWidth
-          margin="normal"
-          id="password"
-          name="password"
-          label="Password"
-          type="password"
-          variant="outlined"
-          value={formik.values.password}
-          onChange={formik.handleChange}
-          error={formik.touched.password && Boolean(formik.errors.password)}
-          helperText={formik.touched.password && formik.errors.password}
-        />
-        <br />
-        <center>
-          <Button
-            color="primary"
-            variant="contained"
-            type="submit"
-            className="button"
-          >
-            Submit
-          </Button>
-        </center>
-      </form>
+    <div>
+      <NavigationBar />
+      <div className="root">
+        <form onSubmit={formik.handleSubmit} className="form">
+          <h1 style={{ textAlign: "center" }}>Login</h1>
+          <TextField
+            fullWidth
+            margin="normal"
+            id="email"
+            name="email"
+            label="Email"
+            variant="outlined"
+            value={formik.values.email}
+            onChange={formik.handleChange}
+            error={formik.touched.email && Boolean(formik.errors.email)}
+            helperText={formik.touched.email && formik.errors.email}
+          />
+          <TextField
+            fullWidth
+            margin="normal"
+            id="password"
+            name="password"
+            label="Password"
+            type="password"
+            variant="outlined"
+            autoComplete="on"
+            value={formik.values.password}
+            onChange={formik.handleChange}
+            error={formik.touched.password && Boolean(formik.errors.password)}
+            helperText={formik.touched.password && formik.errors.password}
+          />
+          <br />
+          <center>
+            <Button
+              color="primary"
+              variant="contained"
+              type="submit"
+              className="button"
+            >
+              Submit
+            </Button>
+          </center>
+        </form>
+      </div>
     </div>
   );
 }
