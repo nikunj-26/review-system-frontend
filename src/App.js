@@ -4,6 +4,7 @@ import RegistrationForm from "./Components/RegistrationForm";
 import Secret from "./Components/Secret";
 import Home from "./Components/Home/Home";
 import AddReview from "./Components/AddReview";
+import SubjectTitle from "./Components/Home/SubjectTitle";
 import PrivateRoute from "./Components/PrivateRoute";
 import PublicRoute from "./Components/PublicRoute";
 import { Router, Switch, Route } from "react-router-dom";
@@ -26,6 +27,7 @@ function App() {
             <PublicRoute path="/login" component={LoginForm} />
             <PrivateRoute path="/secret" component={Secret} />
             <PrivateRoute path="/addreview" component={AddReview} />
+            <Route path="/sub" exact component={SubjectTitle} />
             <Route path="/" exact component={Home} />
           </Switch>
         </div>

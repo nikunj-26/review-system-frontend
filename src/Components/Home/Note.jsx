@@ -1,9 +1,15 @@
 import React from "react";
+import { useHistory } from "react-router-dom";
 import AddIcon from "@material-ui/icons/Add";
 
 function Note(props) {
+  const history = useHistory();
   function handleClick() {
     //props.onDelete(props.id);
+    history.push({
+      pathname: "/sub",
+      search: props.title,
+    });
   }
 
   return (
