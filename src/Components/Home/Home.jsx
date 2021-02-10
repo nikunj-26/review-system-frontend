@@ -3,9 +3,12 @@ import Note from "./Note";
 import NavigationBar from "../NavigationBar";
 import SearchBar from "material-ui-search-bar";
 import axios from "axios";
+import { useSnackbar } from "material-ui-snackbar-provider";
+
 import "./note.css";
 
 export default function Home() {
+  const snackbar = useSnackbar();
   const [notes, setNotes] = useState([
     // {
     //   title: "harsh",
@@ -38,8 +41,19 @@ export default function Home() {
     })
       .then(function (res) {
         //handle success
-        console.log(res.data.snippets);
-        setNotes(res.data.snippets);
+        console.log(res.data);
+        if (res.data.status === "Success") {
+          setNotes(res.data.snippets);
+        } else {
+          snackbar.showMessage(
+            "No items found",
+            "Try something different",
+            () => {
+              // history.push("/home");
+              window.location.reload();
+            }
+          );
+        }
       })
       .catch(function (err) {
         //handle error

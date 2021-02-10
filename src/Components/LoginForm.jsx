@@ -10,7 +10,10 @@ import { fetchUserSuccess } from "../redux/users/userActions";
 import { useDispatch } from "react-redux";
 import "./login.css";
 
+import { useSnackbar } from "material-ui-snackbar-provider";
+
 function LoginForm() {
+  const snackbar = useSnackbar();
   const dispatch = useDispatch();
   const history = useHistory();
   const initialValues = {
@@ -49,8 +52,15 @@ function LoginForm() {
             localStorage.setItem("user", JSON.stringify(res.data));
             history.push("/");
           } else {
-            alert("Invalid email-id or password");
-            history.push("/login");
+            // alert("");
+            // history.push("/login");
+            snackbar.showMessage(
+              "Invalid email-id or password",
+              "Try Again",
+              () => {
+                history.push("/login");
+              }
+            );
           }
         })
         .catch(function (err) {

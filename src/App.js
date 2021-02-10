@@ -9,6 +9,7 @@ import PrivateRoute from "./Components/PrivateRoute";
 import PublicRoute from "./Components/PublicRoute";
 import { Router, Switch, Route } from "react-router-dom";
 import { Provider } from "react-redux";
+import { SnackbarProvider } from "material-ui-snackbar-provider";
 import store from "./redux/store";
 
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
@@ -19,19 +20,21 @@ function App() {
   const history = createBrowserHistory();
   return (
     <Provider store={store}>
-      <Router history={history}>
-        <div className="App">
-          <Switch>
-            <Route path="/home" component={Home} />
-            <PublicRoute path="/register" component={RegistrationForm} />
-            <PublicRoute path="/login" component={LoginForm} />
-            <PrivateRoute path="/secret" component={Secret} />
-            <PrivateRoute path="/addreview" component={AddReview} />
-            <Route path="/sub" exact component={SubjectTitle} />
-            <Route path="/" exact component={Home} />
-          </Switch>
-        </div>
-      </Router>
+      <SnackbarProvider SnackbarProps={{ autoHideDuration: 4000 }}>
+        <Router history={history}>
+          <div className="App">
+            <Switch>
+              <Route path="/home" component={Home} />
+              <PublicRoute path="/register" component={RegistrationForm} />
+              <PublicRoute path="/login" component={LoginForm} />
+              <PrivateRoute path="/secret" component={Secret} />
+              <PrivateRoute path="/addreview" component={AddReview} />
+              <Route path="/sub" exact component={SubjectTitle} />
+              <Route path="/" exact component={Home} />
+            </Switch>
+          </div>
+        </Router>
+      </SnackbarProvider>
     </Provider>
   );
 }

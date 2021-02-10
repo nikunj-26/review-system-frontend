@@ -44,7 +44,7 @@ export default function SubjectTitle(props) {
       <h1>{subjectTitle}</h1>
       {reviews.map((reviewItem) => {
         return (
-          <div>
+          <div key={reviewItem.reviewTitle}>
             <h6>{reviewItem.reviewTitle}</h6>
             <h6>{reviewItem.review}</h6>
             <h6>{reviewItem.username}</h6>

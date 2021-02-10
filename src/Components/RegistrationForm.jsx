@@ -5,8 +5,13 @@ import * as Yup from "yup";
 import axios from "axios";
 import { Button, TextField } from "@material-ui/core";
 import "./login.css";
+import { useSnackbar } from "material-ui-snackbar-provider";
+import { useHistory } from "react-router-dom";
 
 export default function RegistrationForm() {
+  const snackbar = useSnackbar();
+  const history = useHistory();
+
   const initialValues = {
     username: "",
     email: "",
@@ -74,9 +79,14 @@ export default function RegistrationForm() {
           //handle success
           console.log(response);
           if (response.data.status === "error") {
-            alert(response.data.error);
+            // alert(response.data.error);
+            snackbar.showMessage(response.data.error, "Try Again", () => {
+              history.push("/register");
+            });
           } else if (response.data.status === "ok") {
-            alert("Successfully Registered!!");
+            snackbar.showMessage("Succesfully Registered", "LOGIN", () => {
+              history.push("/login");
+            });
           }
         })
         .catch(function (err) {

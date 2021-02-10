@@ -5,9 +5,13 @@ import axios from "axios";
 import { Button, TextField } from "@material-ui/core";
 import { connect } from "react-redux";
 import NavigationBar from "./NavigationBar";
+import { useSnackbar } from "material-ui-snackbar-provider";
+import { useHistory } from "react-router-dom";
 import "./login.css";
 
 function AddReview(props) {
+  const history = useHistory();
+  const snackbar = useSnackbar();
   const initialValues = {
     subjectTitle: "",
     reviewTitle: "",
@@ -70,11 +74,15 @@ function AddReview(props) {
         .then(function (response) {
           //handle success
           console.log(response.data);
-          // if (response.data.status === "error") {
-          //   alert(response.data.error);
-          // } else if (response.data.status === "ok") {
-          //   alert("Successfully Registered!!");
-          // }
+          if (response.data.status === "Success") {
+            snackbar.showMessage(response.data.message, "Home", () => {
+              history.push("/");
+            });
+          } else {
+            snackbar.showMessage(response.data.message, "Try Again", () => {
+              window.location.reload();
+            });
+          }
         })
         .catch(function (err) {
           //handle error

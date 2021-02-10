@@ -68,6 +68,13 @@ function NavigationBar(props) {
     navbar = (
       <Nav className="ml-auto">
         <Nav.Item>
+          <Nav.Link href="/addreview">Create</Nav.Link>
+        </Nav.Item>
+        {/* <Nav.Item>
+          <Nav.Link href="/addreview">Edit</Nav.Link>
+        </Nav.Item> */}
+
+        <Nav.Item>
           <Nav.Link
             onClick={() => {
               dispatch(logoutUser());

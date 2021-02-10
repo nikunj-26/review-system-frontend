@@ -1,15 +1,24 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
 import AddIcon from "@material-ui/icons/Add";
+import { useSnackbar } from "material-ui-snackbar-provider";
+import { connect } from "react-redux";
 
 function Note(props) {
+  const snackbar = useSnackbar();
   const history = useHistory();
   function handleClick() {
     //props.onDelete(props.id);
-    history.push({
-      pathname: "/sub",
-      search: props.title,
-    });
+    if (props.isAuthenticated === true) {
+      history.push({
+        pathname: "/sub",
+        search: props.title,
+      });
+    } else {
+      snackbar.showMessage("Log in to see all reviews", "LOGIN", () => {
+        history.push("/login");
+      });
+    }
   }
 
   return (
@@ -23,4 +32,8 @@ function Note(props) {
   );
 }
 
-export default Note;
+const mapStatetoProps = (state) => ({
+  isAuthenticated: state.isAuthenticated,
+});
+
+export default connect(mapStatetoProps)(Note);
