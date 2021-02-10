@@ -11,7 +11,8 @@ export default function SubjectTitle(props) {
   // };
 
   useEffect(() => {
-    setSubjectTitle(props.location.search.slice(1));
+    const title = props.location.search.slice(1);
+    setSubjectTitle(decodeURI(title));
     const subject = {
       subjectTitle: subjectTitle,
     };
@@ -42,9 +43,9 @@ export default function SubjectTitle(props) {
   return (
     <div>
       <h1>{subjectTitle}</h1>
-      {reviews.map((reviewItem) => {
+      {reviews.map((reviewItem, index) => {
         return (
-          <div key={reviewItem.reviewTitle}>
+          <div key={index}>
             <h6>{reviewItem.reviewTitle}</h6>
             <h6>{reviewItem.review}</h6>
             <h6>{reviewItem.username}</h6>
