@@ -1,5 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import NavigationBar from "../NavigationBar";
+import './AllReview.css';
 
 export default function SubjectTitle(props) {
   const [subjectTitle, setSubjectTitle] = useState("");
@@ -42,14 +44,21 @@ export default function SubjectTitle(props) {
 
   return (
     <div>
-      <h1>{subjectTitle}</h1>
+      <NavigationBar />
+      <h1 style={{marginTop: "30px", marginBottom: "10px", marginLeft: "100px"}}>{subjectTitle}</h1>
       {reviews.map((reviewItem, index) => {
         return (
-          <div key={index}>
+          <div className="note1" key={index}>
+            <h1 align="middle">{reviewItem.reviewTitle}</h1>
+            <p align="left" style={{marginTop: 13}}>{reviewItem.review}</p>
+            <p align="right" style={{fontSize: 15,fontWeight: "bold", fontStyle: "italic"}}>- {reviewItem.username}</p>
+            <p align="left" style={{fontSize: 12,fontWeight: "bold", fontStyle: "italic"}}>{reviewItem.timeStamp}</p>
+          </div>
+          /*<div key={index}>
             <h6>{reviewItem.reviewTitle}</h6>
             <h6>{reviewItem.review}</h6>
             <h6>{reviewItem.username}</h6>
-          </div>
+          </div>*/
         );
       })}
     </div>
