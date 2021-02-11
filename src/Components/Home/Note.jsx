@@ -25,12 +25,14 @@ function Note(props) {
   return (
     <div className="note">
       <h1>{props.title}</h1>
-      <p align="left" style={{marginTop: 13}}>{props.content}</p>
+      <p align="left" style={{minHeight: "50px"}}>{props.content}</p>
       <p align="right" style={{fontSize: 15,fontWeight: "bold", fontStyle: "italic"}}>- {props.username}</p>
-      <IconButton aria-label="expand" onClick={handleClick}>
-        <AspectRatioIcon />
-      </IconButton>
-      <p align="left" style={{fontSize: 12,fontWeight: "bold", fontStyle: "italic"}}>{props.date}</p>
+      <div style={{ paddingBottom: "10px"}}>
+        <IconButton aria-label="expand" onClick={handleClick}>
+          <AspectRatioIcon />
+        </IconButton>
+        <p align="left" style={{fontSize: 12,fontWeight: "bold", fontStyle: "italic"}}>{props.date}</p>
+      </div>
     </div>
   );
 }

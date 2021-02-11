@@ -4,7 +4,7 @@
   box-shadow: 0 2px 5px #ccc;
 
   width: 50%;
-  height: 150px;
+  min-height: 150px;
   margin: 16px;
 }
 .note h1 {
