@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import NavigationBar from "../NavigationBar";
-import './AllReview.css';
+import "./AllReview.css";
 
 export default function SubjectTitle(props) {
   const [subjectTitle, setSubjectTitle] = useState("");
@@ -11,6 +11,8 @@ export default function SubjectTitle(props) {
   // const subject = {
   //   subjectTitle: title,
   // };
+
+  //%iphone
 
   useEffect(() => {
     const title = props.location.search.slice(1);
@@ -29,7 +31,7 @@ export default function SubjectTitle(props) {
         //handle success
         let reviewAll = res.data.review[0];
         console.log(reviewAll);
-        setReviews(reviewAll);
+        setReviews(reviewAll.reverse());
         // if (res.data.status === "Success") {
         //   setReview(res.data.review);
         // } else {
@@ -45,14 +47,35 @@ export default function SubjectTitle(props) {
   return (
     <div>
       <NavigationBar />
-      <h1 style={{marginTop: "30px", marginBottom: "10px", marginLeft: "100px"}}>{subjectTitle}</h1>
+      <h1
+        style={{ marginTop: "30px", marginBottom: "10px", marginLeft: "100px" }}
+      >
+        {subjectTitle}
+      </h1>
       {reviews.map((reviewItem, index) => {
         return (
           <div className="note1" key={index}>
             <h1 align="middle">{reviewItem.reviewTitle}</h1>
-            <p align="left" style={{marginTop: 13}}>{reviewItem.review}</p>
-            <p align="right" style={{fontSize: 15,fontWeight: "bold", fontStyle: "italic"}}>- {reviewItem.username}</p>
-            <p align="left" style={{fontSize: 12,fontWeight: "bold", fontStyle: "italic"}}>{reviewItem.timeStamp}</p>
+            <p align="left" style={{ marginTop: 13 }}>
+              {reviewItem.review}
+            </p>
+            <p
+              align="right"
+              style={{ fontSize: 15, fontWeight: "bold", fontStyle: "italic" }}
+            >
+              - {reviewItem.username}
+            </p>
+            <p
+              align="left"
+              style={{
+                fontSize: 12,
+                fontWeight: "bold",
+                fontStyle: "italic",
+                paddingBottom: "10px",
+              }}
+            >
+              {reviewItem.timeStamp}
+            </p>
           </div>
           /*<div key={index}>
             <h6>{reviewItem.reviewTitle}</h6>
