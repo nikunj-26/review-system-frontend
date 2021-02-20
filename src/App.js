@@ -11,7 +11,6 @@ import { Router, Switch, Route } from "react-router-dom";
 import { Provider } from "react-redux";
 import { SnackbarProvider } from "material-ui-snackbar-provider";
 import store from "./redux/store";
-
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 
 import { createBrowserHistory } from "history";

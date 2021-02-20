@@ -1,8 +1,9 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
-import AddIcon from "@material-ui/icons/Add";
+import IconButton from "@material-ui/core/IconButton";
 import { useSnackbar } from "material-ui-snackbar-provider";
 import { connect } from "react-redux";
+import AspectRatioIcon from '@material-ui/icons/AspectRatio';
 
 function Note(props) {
   const snackbar = useSnackbar();
@@ -24,10 +25,14 @@ function Note(props) {
   return (
     <div className="note">
       <h1>{props.title}</h1>
-      <p>{props.content}</p>
-      <button onClick={handleClick}>
-        <AddIcon />
-      </button>
+      <p align="left" style={{minHeight: "50px"}}>{props.content}</p>
+      <p align="right" style={{fontSize: 15,fontWeight: "bold", fontStyle: "italic"}}>- {props.username}</p>
+      <div style={{ paddingBottom: "10px"}}>
+        <IconButton aria-label="expand" onClick={handleClick}>
+          <AspectRatioIcon />
+        </IconButton>
+        <p align="left" style={{fontSize: 12,fontWeight: "bold", fontStyle: "italic"}}>{props.date}</p>
+      </div>
     </div>
   );
 }

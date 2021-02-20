@@ -4,8 +4,8 @@ import NavigationBar from "../NavigationBar";
 import SearchBar from "material-ui-search-bar";
 import axios from "axios";
 import { useSnackbar } from "material-ui-snackbar-provider";
-
 import "./note.css";
+import logo from "./rating.png";
 
 export default function Home() {
   const snackbar = useSnackbar();
@@ -43,7 +43,7 @@ export default function Home() {
         //handle success
         console.log(res.data);
         if (res.data.status === "Success") {
-          setNotes(res.data.snippets);
+          setNotes(res.data.snippets.reverse());
         } else {
           snackbar.showMessage(
             "No items found",
@@ -64,26 +64,40 @@ export default function Home() {
   return (
     <div>
       <NavigationBar />
-      <h1>Search for a Review :</h1>
+      <img
+        height="10%"
+        width="10%"
+        className="d-block mx-auto img-fluid w-40"
+        src={logo}
+        alt="Logo"
+        style={{ paddingTop: "7%" }}
+      />
       <SearchBar
         // onChange={(newvalue) => console.log(newvalue)}
         onRequestSearch={(value) => onSearch(value)}
         style={{
+          backgroundColor: "#CFCFCF",
+          borderRadius: "10px",
           margin: "0 auto",
           maxWidth: 800,
           marginTop: "50px",
+          marginBottom: "30px",
         }}
       />
-      {notes.map((noteItem, index) => {
-        return (
-          <Note
-            key={index}
-            id={index}
-            title={noteItem.subjectTitle}
-            content={noteItem.desc}
-          />
-        );
-      })}
+      <div align="center">
+        {notes.map((noteItem, index) => {
+          return (
+            <Note
+              key={index}
+              id={index}
+              title={noteItem.subjectTitle}
+              content={noteItem.desc}
+              username={noteItem.username}
+              date={noteItem.date}
+            />
+          );
+        })}
+      </div>
     </div>
   );
 }
